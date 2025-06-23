@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Redirector</title>
+    <script>
+        // Immediate redirect on page load
+        window.onload = function() {
+            // Change this URL to your desired destination
+            const targetWebsite = "https://www.google.com";
+            
+            // Redirect immediately
+            window.location.href = targetWebsite;
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 20px rgba(240, 147, 251, 0.3);
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 15px;
+        }
+
+        .preset-links {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .preset-links h3 {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .preset-btn {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 3px;
+        }
+
+        .preset-btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<!-- <body>
+    <div class="container">
+        <h1>🌐 Website Redirector</h1>
+        
+        <form id="redirectForm">
+            <div class="form-group">
+                <label for="targetUrl">Enter the website URL to redirect to:</label>
+                <input type="url" id="targetUrl" name="targetUrl" 
+                       placeholder="https://example.com" 
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn">🚀 Redirect Now</button>
+                <button type="button" class="btn btn-secondary" onclick="redirectWithDelay()">⏱️ Redirect in 5s</button>
+            </div>
+        </form>
+
+        <div id="status" class="status" style="display: none;"></div>
+        <div id="countdown" class="countdown" style="display: none;"></div>
+
+        <div class="preset-links">
+            <h3>Quick Redirects:</h3>
+            <button class="preset-btn" onclick="redirectTo('https://www.google.com')">Google</button>
+            <button class="preset-btn" onclick="redirectTo('https://www.github.com')">GitHub</button>
+            <button class="preset-btn" onclick="redirectTo('https://www.stackoverflow.com')">Stack Overflow</button>
+            <button class="preset-btn" onclick="redirectTo('https://www.youtube.com')">YouTube</button>
+            <button class="preset-btn" onclick="redirectTo('https://www.wikipedia.org')">Wikipedia</button>
+            <button class="preset-btn" onclick="redirectTo('https://www.reddit.com')">Reddit</button>
+        </div>
+    </div>
+
+    <script>
+        let countdownInterval;
+
+        document.getElementById('redirectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = document.getElementById('targetUrl').value;
+            redirectTo(url);
+        });
+
+        function redirectTo(url) {
+            if (!url) {
+                showStatus('Please enter a valid URL', 'error');
+                return;
+            }
+
+            // Validate URL format
+            let targetUrl = url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                targetUrl = 'https://' + url;
+            }
+
+            try {
+                new URL(targetUrl);
+                showStatus('Redirecting to: ' + targetUrl, 'success');
+                
+                // Redirect after a short delay to show the status
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1000);
+            } catch (e) {
+                showStatus('Invalid URL format. Please enter a valid website address.', 'error');
+            }
+        }
+
+        function redirectWithDelay() {
+            const url = document.getElementById('targetUrl').value;
+            if (!url) {
+                showStatus('Please enter a URL first', 'error');
+                return;
+            }
+
+            let targetUrl = url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                targetUrl = 'https://' + url;
+            }
+
+            try {
+                new URL(targetUrl);
+                showStatus('Redirecting in 5 seconds...', 'info');
+                
+                let countdown = 5;
+                const countdownElement = document.getElementById('countdown');
+                countdownElement.style.display = 'block';
+                
+                countdownInterval = setInterval(() => {
+                    countdownElement.textContent = `Redirecting in ${countdown} seconds...`;
+                    countdown--;
+                    
+                    if (countdown < 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = targetUrl;
+                    }
+                }, 1000);
+            } catch (e) {
+                showStatus('Invalid URL format. Please enter a valid website address.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+            statusElement.style.display = 'block';
+            
+            // Clear any existing countdown
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            document.getElementById('countdown').style.display = 'none';
+        }
+
+        // Check if there's a URL parameter for immediate redirect
+        const urlParams = new URLSearchParams(window.location.search);
+        const autoRedirect = urlParams.get('redirect');
+        if (autoRedirect) {
+            redirectTo(autoRedirect);
+        }
+    </script>
+</body> -->
+</html> 
