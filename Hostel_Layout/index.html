@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Layout ~ By Daksh Tyagi</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <script>
-        // Immediate redirect on page load
         window.onload = function() {
-            // Change this URL to your desired destination
-            const targetWebsite = "https://drive.google.com/file/d/1h8-jni4wXZt3GKFYJZ-tMQjnE0hLhEkx/view?usp=sharing";
-            
-            // Redirect immediately
-            window.location.href = targetWebsite;
+            // Set your new redirect link here:
+            var target = "https://drive.google.com/file/d/1h8-jni4wXZt3GKFYJZ-tMQjnE0hLhEkx/view?usp=sharing";
+            // Optionally add a cache-busting query string:
+            var cacheBuster = "?cb=" + new Date().getTime();
+            // If the target link already has a query string, use & instead of ?
+            if (target.includes("?")) {
+                cacheBuster = "&cb=" + new Date().getTime();
+            }
+            window.location.replace(target + cacheBuster);
         };
     </script>
     <style>
